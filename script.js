@@ -94,26 +94,48 @@
 // counter.increment();
 // counter.decrement();
 
-const createCartItem = (item, quantity) => {
-  const increaseQuantity = () => {
-    quantity++;
-    console.log(`Increased quantity of ${item} to ${quantity}`);
-  };
+// const createCartItem = (item, quantity) => {
+//   const increaseQuantity = () => {
+//     quantity++;
+//     console.log(`Increased quantity of ${item} to ${quantity}`);
+//   };
 
-  const decreaseQuantity = () => {
-    quantity--;
-    console.log(`Decreased quantity of ${item} to ${quantity}`);
-  };
+//   const decreaseQuantity = () => {
+//     quantity--;
+//     console.log(`Decreased quantity of ${item} to ${quantity}`);
+//   };
 
-  return { item, quantity, increaseQuantity, decreaseQuantity };
+//   return { item, quantity, increaseQuantity, decreaseQuantity };
+// };
+
+// const cartItem = createCartItem("milk", 2);
+// cartItem.increaseQuantity();
+// cartItem.increaseQuantity();
+// cartItem.decreaseQuantity();
+// cartItem.decreaseQuantity();
+// cartItem.decreaseQuantity();
+
+// const cartItem2 = createCartItem("bread", 5);
+// cartItem2.increaseQuantity();
+
+// Excercise: Scope and closure
+
+// 1.write a function called "createTemparatureConverter"
+// 2. It takes a temperature in Celsius as an argument and returns 2 functions
+// 3. The first function is called "toFahrenheit" and takes a temperature in Celsius as an argument
+// 4. The second function is called "toCelsius" and takes a temperature in Fahrenheit as an argument
+
+// formula to convert from Celsius to Fahrenheit: (Celsius * 1.8) + 32
+// formula to convert from Fahrenheit to Celsius: (Fahrenheit - 32) / 1.8
+
+const createTemparatureConverter = (temperature) => {
+  const celsius = () =>
+    console.log(`${(temperature - 32 / 1.8).toFixed(1)} °C`);
+  const fahrenheit = () =>
+    console.log(`${(temperature * 1.8 + 32).toFixed(1)}°F`);
+  return { celsius, fahrenheit };
 };
 
-const cartItem = createCartItem("milk", 2);
-cartItem.increaseQuantity();
-cartItem.increaseQuantity();
-cartItem.decreaseQuantity();
-cartItem.decreaseQuantity();
-cartItem.decreaseQuantity();
-
-const cartItem2 = createCartItem("bread", 5);
-cartItem2.increaseQuantity();
+const temparatureConverter = createTemparatureConverter(48);
+temparatureConverter.fahrenheit();
+temparatureConverter.celsius();
