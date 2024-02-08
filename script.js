@@ -128,14 +128,13 @@
 // formula to convert from Celsius to Fahrenheit: (Celsius * 1.8) + 32
 // formula to convert from Fahrenheit to Celsius: (Fahrenheit - 32) / 1.8
 
-const createTemparatureConverter = (temperature) => {
-  const celsius = () =>
-    console.log(`${(temperature - 32 / 1.8).toFixed(1)} °C`);
-  const fahrenheit = () =>
-    console.log(`${(temperature * 1.8 + 32).toFixed(1)}°F`);
-  return { celsius, fahrenheit };
+const createTemparatureConverter = () => {
+  const toCelsius = (temperature) => (temperature - 32) / 1.8;
+  const toFahrenheit = (temperature) => temperature * 1.8 + 32;
+
+  return { toCelsius, toFahrenheit };
 };
 
-const temparatureConverter = createTemparatureConverter(48);
-temparatureConverter.fahrenheit();
-temparatureConverter.celsius();
+const temparatureConverter = createTemparatureConverter();
+console.log(temparatureConverter.toFahrenheit(32.2222222222222222));
+console.log(temparatureConverter.toCelsius(90));
