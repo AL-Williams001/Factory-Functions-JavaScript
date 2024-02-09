@@ -129,8 +129,8 @@
 // formula to convert from Fahrenheit to Celsius: (Fahrenheit - 32) / 1.8
 
 const createTemparatureConverter = () => {
-  const toCelsius = (temperature) => (temperature - 32) / 1.8;
-  const toFahrenheit = (temperature) => temperature * 1.8 + 32;
+  const toCelsius = (Fahrenheit) => (Fahrenheit - 32) / 1.8;
+  const toFahrenheit = (Celsius) => Celsius * 1.8 + 32;
 
   return { toCelsius, toFahrenheit };
 };
@@ -138,3 +138,99 @@ const createTemparatureConverter = () => {
 const temparatureConverter = createTemparatureConverter();
 console.log(temparatureConverter.toFahrenheit(32.2222222222222222));
 console.log(temparatureConverter.toCelsius(90));
+
+// Excercise: create a closure function with the name 'createCounter'
+//it consist of a coint varianle initialize 0
+// increas and decrease method
+// assign the closure function to a variable called counter
+
+// const createCounter = () => {
+//   let count = 0;
+
+//   const increment = () => {
+//     count++;
+//     console.log(count);
+//   };
+//   const decrement = () => {
+//     count--;
+//     console.log(count);
+//   };
+
+//   return { increment, decrement };
+// };
+
+// const counter = createCounter();
+// counter.increment();
+// counter.increment();
+// counter.decrement();
+
+// Prefixing;
+
+const createCounter = () => {
+  let count = 0;
+
+  const increment = () => ++count;
+  const decrement = () => --count;
+
+  return { increment, decrement };
+};
+
+// Private variable and functions
+// const counter = createCounter();
+// console.log(counter.increment());
+// console.log(counter.increment());
+// console.log(counter.decrement());
+
+// const factoryFunction = (string) => {
+//   const capitalizeString = () => string.toUpperCase();
+//   const printString = () => console.log(`${capitalizeString()}`);
+
+//   return { printString };
+// };
+
+// const cookies = factoryFunction("cookies");
+
+// cookies.printString();
+
+const playerFactory = (name, level) => {
+  let health = level * 2;
+  const getLevel = () => level;
+  const getName = () => name;
+  const getHealth = () => health;
+
+  const die = () => console.log(`${name} died!`);
+
+  const damage = (dmg) => {
+    health -= dmg;
+
+    if (health <= 0) {
+      die();
+    }
+  };
+
+  const attack = (enemy) => {
+    enemy.damage(2);
+    console.log(`${enemy.getName()} has been hit!`);
+    console.log(`Remaining health: ${enemy.getHealth()}`);
+  };
+
+  return { getLevel, getName, getHealth, attack, damage };
+};
+
+const player = playerFactory("Black Knight", 5);
+const enemy = playerFactory("Minotaur", 4);
+
+// IIFE- immediately invoke function expression
+const calculator = (() => {
+  const add = (a, b) => a + b;
+  const subtract = (a, b) => a - b;
+  const multiply = (a, b) => a * b;
+  const divide = (a, b) => a / b;
+
+  return { add, subtract, multiply, divide };
+})();
+
+console.log(calculator.add(1, 2));
+console.log(calculator.subtract(10, 2));
+console.log(calculator.divide(10, 2));
+console.log(calculator.multiply(10, 2));
